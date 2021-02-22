@@ -8,7 +8,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://hanana1253.github.io/images/default.jpg">
 <meta property="article:published_time" content="2021-02-10T02:20:06.000Z">
-<meta property="article:modified_time" content="2021-02-10T04:05:34.825Z">
+<meta property="article:modified_time" content="2021-02-22T03:44:16.904Z">
 <meta property="article:author" content="hanana1253">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="Class">
@@ -41,12 +41,10 @@
 <li>a,b,c,d는 모두 Points라는 클래스로 만들어진 객체들인데, 위에서 만든 <code>points</code>라는 리스트에 0번째부터 3번째까지의 요소이다. 즉 input이 입력된 후 위의 일련의 작업을 수행한 결과가 Points의 객체화가 된 것. </li>
 <li>그 밑의 x와 y가 들어간 연산들을 보니, 우리가 만들어야 할 메소드로 <code>cross()</code>와 <code>dot()</code>이 보인다. </li>
 </ul>
-<ol start="2">
+<h3 id="문제-해결하기"><a href="#문제-해결하기" class="headerlink" title="문제 해결하기"></a>문제 해결하기</h3><ul>
 <li>이제 위 코드가 작동할 수 있게끔 Points라는 class를 만들어보자.</li>
-</ol>
-<ul>
-<li>initializing constructor에 들어가는 parameter x,y,z 그대로 instance 변수명으로 지정해주자  <ul>
-<li>initializing constructor의 인자로 points의 0~3번째 리스트가 각각 들어간다.</li>
+<li>initializer에 들어가는 parameter x,y,z 그대로 instance 변수명으로 지정해주자  <ul>
+<li>initializer의 인자로 points의 0~3번째 리스트가 각각 들어간다.</li>
 <li>즉 첫번째 input이 ‘0 4 5’라면 <code>Points(*points[0])</code>는 <code>Points(0,4,5)</code>가 되는 것이다 (*은 뒤에 오는 group object를 unpacking)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class Points(object):</span><br><span class="line">    def __init__(self, x, y, z):</span><br><span class="line">        self.x &#x3D; x</span><br><span class="line">        self.y &#x3D; y</span><br><span class="line">        self.z &#x3D; z</span><br></pre></td></tr></table></figure>
 이렇게 인풋 시 넣은 숫자들 x,y,z 는 이제 객체 안에서의 변수가 된다.</li>
 </ul>
@@ -84,7 +82,7 @@
   s.src = '//web-1-pl2reyej4m.disqus.com/embed.js';
   s.setAttribute('data-timestamp', +new Date());
   (d.head || d.body).appendChild(s);
-})();</script><noscript>Enable JavaScript to see comments.</noscript><!-- Meta Tags for Structured Data--><meta itemprop="dateModified" content="2021-02-10T04:05:34.825Z"><meta itemprop="articleBody" content="class와 벡터연산까지 뒤섞여 있는 문제라 처음엔 엄청 당황했지만 하나씩 하나씩 차근차근 해보자.
+})();</script><noscript>Enable JavaScript to see comments.</noscript><!-- Meta Tags for Structured Data--><meta itemprop="dateModified" content="2021-02-22T03:44:16.904Z"><meta itemprop="articleBody" content="class와 벡터연산까지 뒤섞여 있는 문제라 처음엔 엄청 당황했지만 하나씩 하나씩 차근차근 해보자.
 
 Class 2 - Find the Torsional Angle 문제 보러가기
 벡터와 내적, 외적 구하는 방법은 따로 공부해서 이 글(Vector, Dot product, Cross Product)에 작성해두었으니 참고할 것
