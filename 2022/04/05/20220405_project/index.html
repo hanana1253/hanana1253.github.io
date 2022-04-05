@@ -1,0 +1,139 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>TWOSPOON 프로젝트 리뷰 | Hanana1253 Blog - 성수동 코시생 하나나의 코딩일기</title><link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/css/highlights/dracula.css"><link rel="canonical" href="https://hanana1253.github.io/2022/04/05/20220405_project/"/>
+<meta name="description" content="나는 이걸 왜 하는가? Hanspoon 프로젝트를 개선하고, 리팩토링 &amp; 버전 업그레이드하고 싶어서 새로운 기술과 마이그레이션을 경험해보고 싶어서  기획의도 소소한 버그들과 유저의 불편함을 개선하는 과정을 경험해보자. 공유 기능을 위해 상세…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TWOSPOON 프로젝트 리뷰">
+<meta property="og:url" content="https://hanana1253.github.io/2022/04/05/20220405_project/">
+<meta property="og:site_name" content="Hanana1253 Blog - 성수동 코시생 하나나의 코딩일기">
+<meta property="og:description" content="나는 이걸 왜 하는가? Hanspoon 프로젝트를 개선하고, 리팩토링 &amp; 버전 업그레이드하고 싶어서 새로운 기술과 마이그레이션을 경험해보고 싶어서  기획의도 소소한 버그들과 유저의 불편함을 개선하는 과정을 경험해보자. 공유 기능을 위해 상세…">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://hanana1253.github.io/images/twospoon_main.png">
+<meta property="article:published_time" content="2022-04-05T03:31:33.000Z">
+<meta property="article:modified_time" content="2022-04-05T06:36:58.955Z">
+<meta property="article:author" content="hanana1253">
+<meta property="article:tag" content="React">
+<meta property="article:tag" content="NextJS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hanana1253.github.io/images/twospoon_main.png"><meta property="article:author" content="hanana1253"><meta property="twitter:label1" content="Published at"><meta property="twitter:data1" content="2022-04-05 12:31:33"><meta property="twitter:label2" content="Written by"><meta property="twitter:data2" content="hanana1253"><link rel="icon" href="/images/chick.png"><link rel="alternate" href="/atom.xml" type="application/atom+xml" title="Hanana1253 Blog - 성수동 코시생 하나나의 코딩일기"><meta name="generator" content="Hexo 5.4.0"></head><body itemscope itemtype="https://schema.org/WebPage"><nav class="menu" id="menu"><div class="menu-inner"><div class="menu__left-area"><div class="menu__item"><a class="menu__item__link menu__item__link--brand" href="/" title="Home" rel="home"><img class="menu__item__link--brand__image" src="/images/chick.png" alt="Hanana1253 Blog - 성수동 코시생 하나나의 코딩일기"><span class="menu__item__link--brand__label">Hanana1253 Blog - 성수동 코시생 하나나의 코딩일기</span></a></div></div><div class="menu__right-area"><div class="menu__item"><a class="menu__item__link" href="/">Home</a></div><div class="menu__item"><a class="menu__item__link" href="/about">About</a></div><div class="menu__item"><a class="menu__item__link" href="/archives">Archives</a></div></div></div></nav><div class="page-background"></div><div class="content-container"><div class="content-outer"><div class="content-inner" itemscope itemtype="https://schema.org/Blog"><article class="article" id="article" itemscope itemtype="https://schema.org/BlogPosting"><h1 class="article__title" itemprop="headline">TWOSPOON 프로젝트 리뷰</h1><div class="article__meta"><time class="article__meta__time" datetime="2022-04-05T03:31:33.000Z" itemprop="datePublished">2022-04-05 12:31:33</time><div class="article__meta__categories"><a class="article__meta__categories__item" href="/categories/%EC%82%BD%EC%A7%88%EB%A1%9C%EA%B7%B8/">삽질로그</a></div></div><div class="article__contents"><img src="/images/twospoon_main.png"/><h2 id="나는-이걸-왜-하는가"><a href="#나는-이걸-왜-하는가" class="headerlink" title="나는 이걸 왜 하는가?"></a>나는 이걸 왜 하는가?</h2><ul>
+<li>Hanspoon 프로젝트를 개선하고, 리팩토링 &amp; 버전 업그레이드하고 싶어서</li>
+<li>새로운 기술과 마이그레이션을 경험해보고 싶어서</li>
+</ul>
+<h2 id="기획의도"><a href="#기획의도" class="headerlink" title="기획의도"></a>기획의도</h2><ul>
+<li>소소한 버그들과 유저의 불편함을 개선하는 과정을 경험해보자.</li>
+<li>공유 기능을 위해 상세 레시피 페이지를 따로 만들고, NextJS를 통해 멀티페이지 어플리케이션으로 만들자.</li>
+<li>새로운 기술스택으로 마이그레이션을 해보자.<img src="/images/twospoon_change.png" alt="기술스택 변경" width="600"/>
+
+
+</li>
+</ul>
+<h2 id="HANSPOON-WEBSITE의-문제점-분석"><a href="#HANSPOON-WEBSITE의-문제점-분석" class="headerlink" title="HANSPOON WEBSITE의 문제점 분석"></a><a target="_blank" rel="noopener" href="https://hanspoon-31cd9.web.app/">HANSPOON WEBSITE</a>의 문제점 분석</h2><h3 id="레시피-공유에-적절하지-않은-상세페이지-렌더링-로직"><a href="#레시피-공유에-적절하지-않은-상세페이지-렌더링-로직" class="headerlink" title="레시피 공유에 적절하지 않은 상세페이지 렌더링 로직"></a>레시피 공유에 적절하지 않은 상세페이지 렌더링 로직</h3><ul>
+<li>한스푼에서는 레시피 상세 정보를 팝업창으로 확인<ul>
+<li>그러면 해당 페이지를 공유하는 경우 url로 들어갔을 때 팝업창 외의 뒷 배경의 모든 정보들도 함께 렌더링된 이후 팝업이 뜨도록 처리하거나 </li>
+<li>별도의 상세 페이지로 접속하도록 이중으로 만들어 두어야 한다.</li>
+</ul>
+</li>
+<li>그냥 별도의 페이지로 라우팅하기로 결정<ul>
+<li>팝업(다이얼로그) 창에서는 검은색 배경이었지만 하얀색으로 색깔 반전을 주고 일반적인 페이지로 만들자.</li>
+</ul>
+</li>
+<li>SEO도 같이 챙기게 NextJS를 이용하여 Multipage application을 만들자.<img src="/images/twospoon_detail.png" alt="Hanspoon Header 컴포넌트 코드" width="700"/>
+
+</li>
+</ul>
+<h3 id="유저-피드백에-의한-개선사항"><a href="#유저-피드백에-의한-개선사항" class="headerlink" title="유저 피드백에 의한 개선사항"></a>유저 피드백에 의한 개선사항</h3><ul>
+<li>아코디언 컴포넌트에서 상세정보를 눌렀을 때 스크롤 튀는 문제</li>
+<li>페이지네이션 버튼 안에 아이콘이 일부 가려지는 문제</li>
+<li>공유와 북마크 버튼 사이의 간격이 너무 좁아서 어느 요소가 클릭되는지 불분명함</li>
+</ul>
+<h2 id="프로젝트-결과물"><a href="#프로젝트-결과물" class="headerlink" title="프로젝트 결과물"></a>프로젝트 결과물</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/TeamCooks/TwoSpoon">TeamCooks의 TWOSPOON 레포</a></li>
+</ul>
+<h2 id="삽질의-과정"><a href="#삽질의-과정" class="headerlink" title="삽질의 과정"></a>삽질의 과정</h2><h3 id="마이그레이션"><a href="#마이그레이션" class="headerlink" title="마이그레이션"></a>마이그레이션</h3><p>겉모습만 똑같을 뿐 기술스택을 처음부터 끝까지 다 바꾸는 과정이 정말 쉽지 않았지만, 차이점을 확실히 알 수 있어서 재미있었다.</p>
+<h4 id="1-Styling-Sass-module에서-styled-components로-그리고-결국-emotion으로"><a href="#1-Styling-Sass-module에서-styled-components로-그리고-결국-emotion으로" class="headerlink" title="1. Styling (Sass module에서 styled-components로, 그리고 결국 emotion으로)"></a>1. Styling (Sass module에서 styled-components로, 그리고 결국 emotion으로)</h4><ul>
+<li>성능 이슈가 거론되긴 하지만 우리의 프로젝트는 작고 소중한 사이즈이며 애니메이션이 많은 페이지도 아니기 때문에 CSS in JS도 나쁘지 않을 것이라는 판단</li>
+<li>styled-components로 시작했다가 NextJS로 중간에 바꾸면서 NextJS가 emotion과 합이 잘 맞는다고 어디서 들어서 다시 emotion으로 변경 (어떤 부분에서 합이 잘 맞는지는 기억이 나지 않는다).<ul>
+<li>emotion과 styled-components의 차이점에 대해서는 <a target="_blank" rel="noopener" href="https://velog.io/@bepyan/styled-components-%EA%B3%BC-emotion-%EB%8F%84%EB%8C%80%EC%B2%B4-%EC%B0%A8%EC%9D%B4%EA%B0%80-%EB%AD%94%EA%B0%80">이론적으로만 리서치</a>했는데, css 프롭을 적극 활용하지는 않았던 터라 두 라이브러리 사이의 큰 차이는 느끼지 못했다. </li>
+<li>styled components 코드와 emotion 코드가 다를 바 없어서 두 라이브러리 사이의 마이그레이션은 <code>import</code> 구문만 제외하면 할 게 없었음</li>
+</ul>
+</li>
+<li>자바스크립트로 스타일링 코드를 작성할 수 있는 것은 신선한 경험이었고 좋았다.<ul>
+<li>따옴표 속 css 코드에 syntax highlight가 안되는 탓에 자꾸 오타내서 머리박고 사죄하고 바로 <a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=styled-components.vscode-styled-components">vscode-styled-components</a> 익스텐션 설치.</li>
+</ul>
+</li>
+<li><strong>Before</strong> HanSpoon 스타일링: 컴포넌트에 상태에 따른 클래스이름을 준 후 sass 모듈파일에서 해당 클래스 이름에 스타일링을 적용<img src="/images/twospoon_1before01.png" alt="Hanspoon Header 컴포넌트 코드" width="700"/>
+<img src="/images/twospoon_1before02.png" alt="Hanspoon CSS 코드" width="700"/></li>
+<li><strong>After</strong> TwoSpoon 스타일링: 컴포넌트에 <a target="_blank" rel="noopener" href="https://medium.com/@probablyup/introducing-transient-props-f35fd5203e0c">transient prop</a>을 준 후 해당 프롭의 값에 따라 스타일링 문자열을 적용하도록 Styled component 작성<img src="/images/twospoon_1after01.png" alt="Twospoon Header 컴포넌트 코드" width="700"/>
+<img src="/images/twospoon_1after02.png" alt="Twospoon CSS 컴포넌트 코드" width="700"/>
+
+</li>
+</ul>
+<h4 id="2-Routing-react-router-dom에서-NextJS가-다해주는-걸로"><a href="#2-Routing-react-router-dom에서-NextJS가-다해주는-걸로" class="headerlink" title="2. Routing (react-router-dom에서 NextJS가 다해주는 걸로)"></a>2. Routing (react-router-dom에서 NextJS가 다해주는 걸로)</h4><ul>
+<li>NextJS를 쓰면서 프레임워크의 위대함을 느꼈는데, 대표적인 게 라우팅이었다. <ul>
+<li>코드 작성할 필요도 없이 pages라는 폴더 안에 파일명만 잘 설정해두면 동적 라우팅까지 다 된다.</li>
+</ul>
+</li>
+<li><strong>Before</strong> HanSpoon 라우팅 코드: <code>useRoutes</code>를 쓰거나 <code>BrowserRouter</code> 및 온갖 라우팅 컴포넌트를 덧씌웠어야 했던 과거는 안녕 <img src="/images/twospoon_2before.png" alt="Hanspoon 라우팅 코드" width="700"/></li>
+<li><strong>After</strong> TwoSpoon 디렉토리 및 파일: 넌 아직도 라우팅 코드로 하니? 난 파일명으로 해<img src="/images/twospoon_2after.png" alt="Twospoon 폴더구조" width="300"/>
+
+</li>
+</ul>
+<h4 id="3-Prop-Typing-prop-types에서-typescript로"><a href="#3-Prop-Typing-prop-types에서-typescript로" class="headerlink" title="3. Prop Typing (prop-types에서 typescript로)"></a>3. Prop Typing (prop-types에서 typescript로)</h4><ul>
+<li>타입스크립트는 프롭타입에만 해당하는 건 아니지만… </li>
+<li>마침 이펙티브 타입스크립트 책으로 함께 스터디 하면서 공부했던 걸 적용해볼 수 있었다.</li>
+<li>코드가 안정적이라 좋긴 한데 타입체크 통과하기 위해 인고의 타입에러 피하기를 거쳐야한다.</li>
+<li><strong>Before</strong> HanSpoon 프롭타입 정의: prop-types로 하나하나 정의해줬어야 했던 과거는 안녕<img src="/images/twospoon_5before.png" alt="Hanspoon 프롭 타입 정의 코드" width="700"/></li>
+<li><strong>After</strong> TwoSpoon typescript: 타입스크립트로 처리하면 되지롱<img src="/images/twospoon_5after.png" alt="Twospoon 타입스크립트 코드" width="700"/>
+
+
+</li>
+</ul>
+<h4 id="4-전역-상태-관리-ContextAPI-constate에서-redux-RTK로"><a href="#4-전역-상태-관리-ContextAPI-constate에서-redux-RTK로" class="headerlink" title="4. 전역 상태 관리 (ContextAPI, constate에서, redux, RTK로)"></a>4. 전역 상태 관리 (ContextAPI, constate에서, redux, RTK로)</h4><ul>
+<li>사실 리덕스로 관리할만한 다양한 상태가 없지만 그래도 리덕스 사용해보고 싶어서 오버엔지니어링을 어쩔 수 없이 선택</li>
+<li>향후 계속 업그레이드 하면서 TenSpoon 정도 되면 더 많은 복잡한 상태가 생길테니 미래지향적으로 생각해보자</li>
+<li>redux 쓰려면 내가 일일히 다 작성하지 말고 RTK로 하는 게 좋을거라는 얘기가 무엇인지 알게 되었다.</li>
+<li><strong>Before</strong> HanSpoon constate: <code>constate</code>로 만든 훅으로 반환한 상태 및 상태변경 함수 사용 <img src="/images/twospoon_3before.png" alt="Hanspoon constate 코드" width="400"/></li>
+<li><strong>After</strong> TwoSpoon RTK Slice: 이것저것 넣고 slice만 만들면 <code>useSelector</code>와 <code>useDispatch</code>로 갖다쓰기<img src="/images/twospoon_3after.png" alt="Twospoon RTK slice 코드" width="700"/>
+
+</li>
+</ul>
+<h4 id="5-Fetching-amp-Caching-커스텀-훅에-직접-작성하던-fetch함수에서-RTK-Query로"><a href="#5-Fetching-amp-Caching-커스텀-훅에-직접-작성하던-fetch함수에서-RTK-Query로" class="headerlink" title="5. Fetching &amp; Caching (커스텀 훅에 직접 작성하던 fetch함수에서 RTK Query로)"></a>5. Fetching &amp; Caching (커스텀 훅에 직접 작성하던 fetch함수에서 RTK Query로)</h4><ul>
+<li><strong>Before</strong> HanSpoon useSearch 커스텀 훅: fetch 함수를 직접 작성했고, useRef를 활용하여 직접 캐싱 로직을 만들어 선택적으로 fetch 구현<img src="/images/twospoon_4before.png" alt="Hanspoon constate 코드" width="700"/></li>
+<li><strong>After</strong> TwoSpoon RTK Query: createApi로 fetch하는 url의 endpoint만 설정해두면 훅 이름까지도 다 자동생성해주며, 동일한 인자와 url로 가는 요청에 대해서는 store에 캐싱되어 있는 데이터를 반환<img src="/images/twospoon_4after.png" alt="Twospoon RTK slice 코드" width="700"/>
+
+</li>
+</ul>
+<h3 id="스토리북"><a href="#스토리북" class="headerlink" title="스토리북"></a>스토리북</h3><ul>
+<li>스토리북은 직접 쓰기 전까지는 정말 어려워 보였는데 막상 해보면 그렇게까지 못할 건 아니었다.<img src="/images/twospoon_storybook.png" alt="Twospoon Storybook" width="700"/>
+<img src="/images/twospoon_pagination.png" alt="Twospoon Storybook" width="300" style="display: inline;"/>
+<img src="/images/twospoon_dialog.png" alt="Twospoon Storybook" width="300" style="display: inline;"/></li>
+<li>장점: 컴포넌트별로 보면서 개발할 수 있어서 진정한 CDD가 가능하며, 이로 인한 굉장한 자존감 상승</li>
+<li>단점: 글로벌 스타일 등 전역에 넣어주어야 하는 설정들을 따로 해줘야 하는 약간의 번거로움, 그리고 너무 무거워서 스토리북 돌릴 때면 컴퓨터가 느려짐</li>
+</ul>
+<h3 id="기타-이슈"><a href="#기타-이슈" class="headerlink" title="기타 이슈"></a>기타 이슈</h3><ul>
+<li>Sentry 마이그레이션도 NextJS를 위한 sentry 패키지를 깔고 환경설정만 몇개 하면 되는 거라서 충격적일 정도로 간편하다.</li>
+<li>내가 코로나 걸리는 바람에 재택 온라인 스크럼과 코드리뷰를 활발히 할 수 있었다. 오히려 좋아</li>
+</ul>
+<h2 id="발표-후-Q-amp-A-및-피드백"><a href="#발표-후-Q-amp-A-및-피드백" class="headerlink" title="발표 후 Q&amp;A 및 피드백"></a>발표 후 Q&amp;A 및 피드백</h2><ul>
+<li>이미지가 늦게 뜨는데 그 이유가 무엇이라고 생각하는지<ul>
+<li>원래도 해외에서 건너오는 이미지인데, 스토리북과 데브서버를 같이 돌리느라 느려져서 그렇다고 생각</li>
+<li>울군 선생님은 발표 전에 충분한 기도를 하고 올라갔어야한다고 조언해주심 (ㅋㅋ)</li>
+</ul>
+</li>
+<li>스크롤 버그 문제는 어떻게 해결했는지 <ul>
+<li><code>details</code>, <code>summary</code> 내용이 양이 많아서 일어나는 문제라, 충분한 padding값을 주니 해결</li>
+</ul>
+</li>
+</ul>
+<h2 id="느낀-점"><a href="#느낀-점" class="headerlink" title="느낀 점"></a>느낀 점</h2><ul>
+<li>지금까지 했던 프로젝트 중 가장 배운 것도 많고 그만큼 재밌었던 프로젝트였다.</li>
+<li>취업을 위해 수많은 코딩테스트, 면접, 코로나 투병을 병행하면서도 끝까지 함께 한 팀원들 덕분에 더욱 좋았다.</li>
+<li>1년이 넘는 시간 동안 몸담았던 학원에서 하는 마지막 공식 프로젝트라서 더 감회가 새로웠다.</li>
+<li>앞으로 쓰리스푼 포스푼 텐스푼까지 해보는 것도 괜찮을 것 같다. (아마 팀원들이 싫어하겠지)</li>
+</ul>
+</div><div class="article__tags"><a class="article__tags__item" href="/tags/React/">React</a><a class="article__tags__item" href="/tags/NextJS/">NextJS</a></div><div class="article__author" itemscope itemprop="author" itemtype="https://schema.org/Person"><img class="article__author__image" src="/images/hanana1253.jpeg" alt="hanana1253"><a class="article__author__link" target="_blank" href="https://github.com/hanana1253" title="About hanana1253" rel="author noopener">hanana1253</a><p class="article__author__desc">성수동에서 코딩공부하는 하나나입니다.</p><div class="article__author__socials"><a class="article__author__socials__item" href="https://github.com/hanana1253" title="github" target="_blank"><i class="fa fa-github"></i></a><a class="article__author__socials__item" href="/atom.xml" title="rss" target="_blank"><i class="fa fa-rss"></i></a></div><meta itemprop="name" content="hanana1253"></div><div class="sharer" id="sharer"><div class="sharer-inner"><div class="sharer__right"><button class="sharer__item" id="sharer-facebook"><i class="fa fa-facebook-official"></i></button><button class="sharer__item" id="sharer-twitter"><i class="fa fa-twitter"></i></button><button class="sharer__item" id="sharer-pinterest"><i class="fa fa-pinterest"></i></button><button class="sharer__item" id="sharer-pocket"><i class="fa fa-get-pocket"></i></button></div></div></div><!-- Disqus Code--><!-- Meta Tags for Structured Data--><meta itemprop="dateModified" content="2022-04-05T06:36:58.955Z"><meta itemprop="articleBody" content="나는 이걸 왜 하는가?
+Hanspoon 프로젝트를 개선하고, 리팩토링 &amp;amp; 버전 업그레이드하고 싶어서
+새로운 기술과 마이그레이션을 경험해보고 싶어서
+
+기획의도
+소소한 버그들과 유저의 불편함을 개선하는 과정을 경험해보자.
+공유 기능을 위해 상세 레시피 페이지를 따로 만들고, NextJS를 통해 멀티페이지 어플리케이션으로 만들자.
+새로운..."><meta itemprop="url" content="https://hanana1253.github.io/2022/04/05/20220405_project/"><meta itemprop="mainEntityOfPage" content="https://hanana1253.github.io/2022/04/05/20220405_project/"><div itemscope itemtype="https://schema.org/Organization" itemprop="publisher"><meta itemprop="name" content="Hanana1253 Blog - 성수동 코시생 하나나의 코딩일기"><div itemscope itemprop="logo" itemtype="https://schema.org/ImageObject"><meta itemprop="url" content="https://hanana1253.github.io/images/chick.png"></div></div><div itemscope itemtype="https://schema.org/ImageObject" itemprop="image"><meta itemprop="contentUrl" content="https://hanana1253.github.io/images/twospoon_main.png"><meta itemprop="url" content="https://hanana1253.github.io/images/twospoon_main.png"><meta itemprop="width" content="1280"><meta itemprop="height" content="720"></div></article><section class="related-posts"><h3>Related posts</h3><div class="related-posts__item__wrapper"><a class="related-posts__item" href="/2022/02/02/20220202_project/"><div class="related-posts__item__background" style="background-image:url('/images/hanspoon.png');"></div><div class="related-posts__item__overlay"></div><span class="related-posts__item__title">HANSPOON 프로젝트 리뷰</span></a></div><div class="related-posts__item__wrapper"><a class="related-posts__item" href="/2021/09/04/20210904_weekly/"><div class="related-posts__item__background" style="background-image:url('/images/weekly.jpg');"></div><div class="related-posts__item__overlay"></div><span class="related-posts__item__title">20210904 찬찬히 React를 복습한 서른세번째 주</span></a></div><div class="related-posts__item__wrapper"><a class="related-posts__item" href="/2021/11/13/20211113_weekly/"><div class="related-posts__item__background" style="background-image:url('/images/weekly.jpg');"></div><div class="related-posts__item__overlay"></div><span class="related-posts__item__title">20211113 절망의 계곡 마흔세번째 주</span></a></div></section></div></div></div><footer id="footer"><div class="widgets"><div class="widgets-inner"><!-- Jade doesn't support dynamic inclusion with `each`.--><!-- So, I just hard coded the file names that will be included.--><div class="widgets__item"><h3 class="widgets__item__heading">Categories</h3><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Review/">Review</a><span class="category-list-count">15</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Review/%EA%B0%95%EC%9D%98%EC%99%80-%EC%98%81%EC%83%81/">강의와 영상</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Review/%EC%B1%85%EA%B3%BC-%EC%9E%90%EB%A3%8C/">책과 자료</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Review/%ED%9A%8C%EA%B3%A0%EB%A1%9D/">회고록</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Weekly-Bootcamp/">Weekly Bootcamp</a><span class="category-list-count">52</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%EA%B0%9C%EB%85%90%EC%A0%95%EB%A6%AC/">개념정리</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%EA%B0%9C%EB%85%90%EC%A0%95%EB%A6%AC/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/">네트워크</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%EA%B0%9C%EB%85%90%EC%A0%95%EB%A6%AC/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%EB%AC%B8%EC%A0%9C%ED%92%80%EC%9D%B4/">문제풀이</a><span class="category-list-count">26</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%EB%AC%B8%EC%A0%9C%ED%92%80%EC%9D%B4/HackerRank/">HackerRank</a><span class="category-list-count">25</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%EB%AC%B8%EC%A0%9C%ED%92%80%EC%9D%B4/%EA%B8%B0%ED%83%80/">기타</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%EC%82%BD%EC%A7%88%EB%A1%9C%EA%B7%B8/">삽질로그</a><span class="category-list-count">9</span></li></ul></div><div class="widgets__item"><h3 class="widgets__item__heading">Tag cloud</h3><div class="tag-cloud"><a href="/tags/2021-%EC%BA%90%EC%B9%98%EC%B9%B4%ED%8E%98-%EA%B0%9C%EB%B0%9C%EC%9E%90-%EC%BB%A4%EB%A6%AC%EC%96%B4%EC%BD%98/" style="font-size: 1.06rem;">2021 캐치카페 개발자 커리어콘</a> <a href="/tags/Algorithm/" style="font-size: 1.13rem;">Algorithm</a> <a href="/tags/BeautifulSoup/" style="font-size: 0.75rem;">BeautifulSoup</a> <a href="/tags/BubbleSort/" style="font-size: 0.75rem;">BubbleSort</a> <a href="/tags/CSS/" style="font-size: 1.25rem;">CSS</a> <a href="/tags/Class/" style="font-size: 1rem;">Class</a> <a href="/tags/ClassBasedView/" style="font-size: 0.75rem;">ClassBasedView</a> <a href="/tags/Complexity/" style="font-size: 0.75rem;">Complexity</a> <a href="/tags/Cross-Product/" style="font-size: 0.81rem;">Cross-Product</a> <a href="/tags/Django/" style="font-size: 1.31rem;">Django</a> <a href="/tags/Docker/" style="font-size: 0.75rem;">Docker</a> <a href="/tags/Dot-Product/" style="font-size: 0.81rem;">Dot-Product</a> <a href="/tags/File-IO/" style="font-size: 0.81rem;">File IO</a> <a href="/tags/Flask/" style="font-size: 0.75rem;">Flask</a> <a href="/tags/Front-end/" style="font-size: 0.81rem;">Front-end</a> <a href="/tags/Git/" style="font-size: 1.06rem;">Git</a> <a href="/tags/HTML/" style="font-size: 1.19rem;">HTML</a> <a href="/tags/Hexo/" style="font-size: 0.81rem;">Hexo</a> <a href="/tags/Hexo-Img-Optimization/" style="font-size: 0.75rem;">Hexo-Img-Optimization</a> <a href="/tags/InsertionSort/" style="font-size: 0.75rem;">InsertionSort</a> <a href="/tags/JavaScript/" style="font-size: 1.44rem;">JavaScript</a> <a href="/tags/Javascript/" style="font-size: 0.94rem;">Javascript</a> <a href="/tags/Jeffrey-Zeldman/" style="font-size: 0.75rem;">Jeffrey Zeldman</a> <a href="/tags/Jest/" style="font-size: 0.88rem;">Jest</a> <a href="/tags/Lambda/" style="font-size: 0.75rem;">Lambda</a> <a href="/tags/Linked-List/" style="font-size: 0.81rem;">Linked List</a> <a href="/tags/Lists/" style="font-size: 0.75rem;">Lists</a> <a href="/tags/Machine-Learning/" style="font-size: 0.75rem;">Machine Learning</a> <a href="/tags/MySQL/" style="font-size: 0.75rem;">MySQL</a> <a href="/tags/Network/" style="font-size: 0.94rem;">Network</a> <a href="/tags/NextJS/" style="font-size: 0.75rem;">NextJS</a> <a href="/tags/OOP/" style="font-size: 1.06rem;">OOP</a> <a href="/tags/Python/" style="font-size: 1.5rem;">Python</a> <a href="/tags/React/" style="font-size: 1.38rem;">React</a> <a href="/tags/RegEx/" style="font-size: 0.88rem;">RegEx</a> <a href="/tags/Responsive-Web/" style="font-size: 0.88rem;">Responsive Web</a> <a href="/tags/Responsive-Web-Design/" style="font-size: 0.88rem;">Responsive Web Design</a> <a href="/tags/Sass/" style="font-size: 0.75rem;">Sass</a> <a href="/tags/SelectionSort/" style="font-size: 0.75rem;">SelectionSort</a> <a href="/tags/Sets/" style="font-size: 0.75rem;">Sets</a> <a href="/tags/Soft-Skills/" style="font-size: 0.75rem;">Soft Skills</a> <a href="/tags/Sort/" style="font-size: 0.81rem;">Sort</a> <a href="/tags/String-Methods/" style="font-size: 0.75rem;">String Methods</a> <a href="/tags/Strings/" style="font-size: 0.88rem;">Strings</a> <a href="/tags/TDD/" style="font-size: 0.75rem;">TDD</a> <a href="/tags/Tensorflow/" style="font-size: 0.75rem;">Tensorflow</a> <a href="/tags/Vector/" style="font-size: 0.81rem;">Vector</a> <a href="/tags/Web/" style="font-size: 0.75rem;">Web</a> <a href="/tags/Web-Accessibility/" style="font-size: 1rem;">Web Accessibility</a> <a href="/tags/Web-Standards/" style="font-size: 1rem;">Web Standards</a> <a href="/tags/Web-Scraping/" style="font-size: 0.88rem;">Web-Scraping</a> <a href="/tags/Webpack/" style="font-size: 0.81rem;">Webpack</a> <a href="/tags/%EC%82%BD%EC%A7%88%EB%A1%9C%EA%B7%B8/" style="font-size: 0.75rem;">삽질로그</a></div></div><div class="widgets__item"><h3 class="widgets__item__heading">Recent posts</h3><ul class="recent-posts"><li class="recent-posts__item"><a href="/2022/04/05/20220405_project/">TWOSPOON 프로젝트 리뷰</a></li><li class="recent-posts__item"><a href="/2022/02/02/20220202_project/">HANSPOON 프로젝트 리뷰</a></li><li class="recent-posts__item"><a href="/2022/01/10/20220110_weekly/">20220110 리액트 마무으리한 51 번째 주</a></li><li class="recent-posts__item"><a href="/2022/01/02/20220102_weekly/">20220102 리액트 보조도구들을 배운 50 번째 주</a></li><li class="recent-posts__item"><a href="/2022/01/01/20220101_review/">2021년 한 해 회고</a></li></ul></div></div></div><p class="copyright"><small>© 2022 hanana1253<br>Powered by <a href="https://hexo.io" rel="external" target="_blank">Hexo</a>, Theme by <a href="https://github.com/hyunseob" rel="external" target="_blank">HyunSeob</a></small></p></footer><script src="/js/sharer.min.js"></script></body></html>
